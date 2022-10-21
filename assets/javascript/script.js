@@ -251,7 +251,7 @@ next.addEventListener("click", function () {
     }
 })
 
-
+// arrow function for next image
 
 const nextImage = () => {
 
@@ -292,6 +292,47 @@ const nextImage = () => {
 
 }
 
+// arrow function for previous image
+
+const previousImage = () => {
+
+    activeRemover(allTitles, imgPosition);
+
+    activeRemover(allDescriptions, imgPosition);
+
+    activeRemover(allImages, imgPosition);
+
+    noOverlayRemover(allOverlay, imgPosition);
+
+
+    imgPosition--;
+
+    if (imgPosition < 0 ) {
+
+        imgPosition = images.length - 1;
+        activeAdder(allTitles, imgPosition);
+
+        activeAdder(allDescriptions, imgPosition);
+
+        activeAdder(allImages, imgPosition);
+
+        noOverlayAdder(allOverlay, imgPosition);
+
+
+    } else {
+
+        activeAdder(allTitles, imgPosition);
+
+        activeAdder(allDescriptions, imgPosition);
+
+        activeAdder(allImages, imgPosition);
+
+        noOverlayAdder(allOverlay, imgPosition);
+
+    }
+
+}
+
 // interval for scrolling images forward every tot seconds
 let forwardImages = setInterval(nextImage, 3000);
 
@@ -301,11 +342,15 @@ const startButton = document.querySelector(".start");
 // taking stop auto-play button
 const stopButton = document.querySelector(".stop");
 
+// takin reverse auto-play button
+const reverseButton = document.querySelector(".reverse");
 
 // event listener to start auto-play
 startButton.addEventListener("click", function () {
 
     clearInterval(forwardImages);
+
+    clearInterval(reverseImages);
 
     activeRemover(allTitles, imgPosition);
 
@@ -328,8 +373,23 @@ startButton.addEventListener("click", function () {
     forwardImages = setInterval(nextImage, 3000) ;
 })
 
+// event listener to stop auto-play
+
 stopButton.addEventListener("click", function () {
 
     clearInterval(forwardImages);
-    
+
+    clearInterval(reverseImages);
+
+})
+
+// event listener for reverse auto-play
+
+let reverseImages;
+
+reverseButton.addEventListener("click", function (){
+
+    clearInterval(forwardImages);
+
+    reverseImages = setInterval(previousImage, 3000);
 })
