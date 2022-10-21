@@ -253,4 +253,45 @@ next.addEventListener("click", function () {
 
 
 
+const nextImage = () => {
+
+    activeRemover(allTitles, imgPosition);
+
+    activeRemover(allDescriptions, imgPosition);
+
+    activeRemover(allImages, imgPosition);
+
+    noOverlayRemover(allOverlay, imgPosition);
+
+
+    imgPosition++;
+
+    if (imgPosition > images.length - 1) {
+
+        imgPosition = 0;
+        activeAdder(allTitles, imgPosition);
+
+        activeAdder(allDescriptions, imgPosition);
+
+        activeAdder(allImages, imgPosition);
+
+        noOverlayAdder(allOverlay, imgPosition);
+
+
+    } else {
+
+        activeAdder(allTitles, imgPosition);
+
+        activeAdder(allDescriptions, imgPosition);
+
+        activeAdder(allImages, imgPosition);
+
+        noOverlayAdder(allOverlay, imgPosition);
+
+    }
+
+}
+
+
+setInterval(nextImage, 3000);
 
