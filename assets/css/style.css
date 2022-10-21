@@ -4,6 +4,10 @@
     margin-top: 4rem;
 }
 
+.title_and_description {
+    width: 60%;
+}
+
 .slides {
     height: 400px;
 }
@@ -13,6 +17,16 @@ img {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.title_and_description > h3:not(h3.active),
+.title_and_description > p:not(p.active) {
+    display: none;
+}
+
+.title_and_description > h3.active,
+.title_and_description > p.active {
+    display: block;
 }
 
 .slides > img:not(img.active) {
