@@ -292,6 +292,44 @@ const nextImage = () => {
 
 }
 
+// interval for scrolling images forward every tot seconds
+let forwardImages = setInterval(nextImage, 3000);
 
-setInterval(nextImage, 3000);
+// taking start auto-play button
+const startButton = document.querySelector(".start");
 
+// taking stop auto-play button
+const stopButton = document.querySelector(".stop");
+
+
+// event listener to start auto-play
+startButton.addEventListener("click", function () {
+
+    clearInterval(forwardImages);
+
+    activeRemover(allTitles, imgPosition);
+
+    activeRemover(allDescriptions, imgPosition);
+
+    activeRemover(allImages, imgPosition);
+
+    noOverlayRemover(allOverlay, imgPosition);
+
+    imgPosition = 0;
+
+    activeAdder(allTitles, imgPosition);
+
+    activeAdder(allDescriptions, imgPosition);
+
+    activeAdder(allImages, imgPosition);
+
+    noOverlayAdder(allOverlay, imgPosition);
+
+    forwardImages = setInterval(nextImage, 3000) ;
+})
+
+stopButton.addEventListener("click", function () {
+
+    clearInterval(forwardImages);
+    
+})
