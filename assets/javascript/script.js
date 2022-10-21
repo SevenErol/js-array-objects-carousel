@@ -38,152 +38,219 @@ function generateURL(objectList) {
 
 }
 
+// invoking function to generate URL in my list
+
 generateURL(images);
 
-const slides = document.querySelector(".slides");
-
+// taking div to append title and description
 const titleDescription = document.querySelector(".title_and_description");
 
+// taking div to append slides
+const slides = document.querySelector(".slides");
+
+// taking div to append thumbnails
+const thumbs = document.querySelector(".thumbs");
+
+// taking button previous image
 const previous = document.querySelector(".previous");
 
+// taking button next image
 const next = document.querySelector(".next");
-
-const thumbs = document.querySelector(".thumbs");
 
 let imgPosition = 0;
 
-for (let i = 0; i < images.length; i++) {
+// function to create slides 
 
-    const thisImage = document.createElement("img");
+const createSlides = images => {
 
-    thisImage.src = images[i].image;
+    for (let i = 0; i < images.length; i++) {
 
-    slides.appendChild(thisImage);
+        const thisImage = document.createElement("img");
 
-    const title = document.createElement("h3");
+        thisImage.src = images[i].image;
 
-    const description = document.createElement("p");
+        slides.appendChild(thisImage);
 
-    title.innerHTML = images[i].title;
+        const title = document.createElement("h3");
 
-    description.innerHTML = images[i].text;
+        const description = document.createElement("p");
 
-    titleDescription.appendChild(title);
+        title.innerHTML = images[i].title;
 
-    titleDescription.appendChild(description);
+        description.innerHTML = images[i].text;
+
+        titleDescription.appendChild(title);
+
+        titleDescription.appendChild(description);
+
+    }
 
 }
 
+// function to create thumbnails
+
+const createThumbs = images => {
+
+    for (let i = 0; i < images.length; i++) {
+
+        const singleThumb = document.createElement("div");
+
+        const thumbImage = document.createElement("img");
+
+        const overlay = document.createElement("div");
+
+        singleThumb.classList.add("single_thumb");
+
+        overlay.classList.add("overlay");
+
+        thumbImage.src = images[i].image;
+
+        thumbs.appendChild(singleThumb);
+
+        singleThumb.appendChild(thumbImage);
+
+        singleThumb.appendChild(overlay);
+
+    }
+
+}
+
+// invoking function to generate slides
+createSlides(images);
+
+// invoking function to generate thumbnails
+createThumbs(images);
+
+// taking titles nodeList
 const allTitles = document.querySelectorAll(".title_and_description h3");
 
+// taking decsriptions nodeList
 const allDescriptions = document.querySelectorAll(".title_and_description p");
 
+// taking images nodeList
 const allImages = document.querySelectorAll(".slides img");
 
-allImages[imgPosition].classList.add("active");
+// taking overlays nodeList
+const allOverlay = document.querySelectorAll(".single_thumb div");
 
-allTitles[imgPosition].classList.add("active");
+// function for adding class active
+const activeAdder = (nodeList, position) => {
 
-allDescriptions[imgPosition].classList.add("active");
+    nodeList[position].classList.add("active");
 
+}
+
+// function for removing class active
+const activeRemover = (nodeList, position) => {
+
+    nodeList[position].classList.remove("active");
+
+}
+
+// function for adding class no_overlay
+const noOverlayAdder = (nodeList, position) => {
+
+    nodeList[position].classList.add("no_overlay");
+
+}
+
+// function for removing class no_overlay
+const noOverlayRemover = (nodeList, position) => {
+
+    nodeList[position].classList.remove("no_overlay");
+
+}
+
+// invoked functions for adding classes
+
+activeAdder(allTitles, imgPosition);
+
+activeAdder(allDescriptions, imgPosition);
+
+activeAdder(allImages, imgPosition);
+
+noOverlayAdder(allOverlay, imgPosition);
+
+// event listener for previous image
 
 previous.addEventListener("click", function () {
 
-    allImages[imgPosition].classList.remove("active");
+    activeRemover(allTitles, imgPosition);
 
-    allTitles[imgPosition].classList.remove("active");
+    activeRemover(allDescriptions, imgPosition);
 
-    allDescriptions[imgPosition].classList.remove("active");
+    activeRemover(allImages, imgPosition);
 
-    allOverlay[imgPosition].classList.remove("no_overlay");
+    noOverlayRemover(allOverlay, imgPosition);
 
     imgPosition--;
 
     if (imgPosition < 0) {
 
         imgPosition = images.length - 1;
-        allImages[imgPosition].classList.add("active");
 
-        allTitles[imgPosition].classList.add("active");
+        activeAdder(allTitles, imgPosition);
 
-        allDescriptions[imgPosition].classList.add("active");
+        activeAdder(allDescriptions, imgPosition);
 
-        allOverlay[imgPosition].classList.add("no_overlay");
+        activeAdder(allImages, imgPosition);
+
+        noOverlayAdder(allOverlay, imgPosition);
 
 
     } else {
 
-        allImages[imgPosition].classList.add("active");
+        activeAdder(allTitles, imgPosition);
 
-        allTitles[imgPosition].classList.add("active");
+        activeAdder(allDescriptions, imgPosition);
 
-        allDescriptions[imgPosition].classList.add("active");
+        activeAdder(allImages, imgPosition);
 
-        allOverlay[imgPosition].classList.add("no_overlay");
+        noOverlayAdder(allOverlay, imgPosition);
 
     }
 })
 
+// event listener for next image
+
 next.addEventListener("click", function () {
 
-    allImages[imgPosition].classList.remove("active");
+    activeRemover(allTitles, imgPosition);
 
-    allTitles[imgPosition].classList.remove("active");
+    activeRemover(allDescriptions, imgPosition);
 
-    allDescriptions[imgPosition].classList.remove("active");
+    activeRemover(allImages, imgPosition);
 
-    allOverlay[imgPosition].classList.remove("no_overlay");
+    noOverlayRemover(allOverlay, imgPosition);
+
 
     imgPosition++;
 
     if (imgPosition > images.length - 1) {
 
         imgPosition = 0;
-        allImages[imgPosition].classList.add("active");
+        activeAdder(allTitles, imgPosition);
 
-        allTitles[imgPosition].classList.add("active");
+        activeAdder(allDescriptions, imgPosition);
 
-        allDescriptions[imgPosition].classList.add("active");
+        activeAdder(allImages, imgPosition);
 
-        allOverlay[imgPosition].classList.add("no_overlay");
+        noOverlayAdder(allOverlay, imgPosition);
 
 
     } else {
 
-        allImages[imgPosition].classList.add("active");
+        activeAdder(allTitles, imgPosition);
 
-        allTitles[imgPosition].classList.add("active");
+        activeAdder(allDescriptions, imgPosition);
 
-        allDescriptions[imgPosition].classList.add("active");
+        activeAdder(allImages, imgPosition);
 
-        allOverlay[imgPosition].classList.add("no_overlay");
+        noOverlayAdder(allOverlay, imgPosition);
 
     }
 })
 
-for (let i = 0; i < images.length; i++) {
-
-    const singleThumb = document.createElement("div");
-
-    const thumbImage = document.createElement("img");
-
-    const overlay = document.createElement("div");
-
-    singleThumb.classList.add("single_thumb");
-
-    overlay.classList.add("overlay");
-
-    thumbImage.src = images[i].image;
-
-    thumbs.appendChild(singleThumb);
-
-    singleThumb.appendChild(thumbImage);
-
-    singleThumb.appendChild(overlay);
-
-}
-
-const allOverlay = document.querySelectorAll(".single_thumb div");
 
 
 
