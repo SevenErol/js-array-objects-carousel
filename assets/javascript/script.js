@@ -25,22 +25,12 @@ const images = [
 
 // function for generating URL 
 
-function generateURL(objectList) {
+images.forEach((element, index, array) => {
 
-    for (let i = 0; i < objectList.length; i++) {
+    array[index].image = "./assets/" + element.image;
 
-        let stringImage = objectList[i].image;
+});
 
-        let imageURL = "./assets/" + stringImage;
-
-        objectList[i].image = imageURL
-    }
-
-}
-
-// invoking function to generate URL in my list
-
-generateURL(images);
 
 // taking div to append title and description
 const titleDescription = document.querySelector(".title_and_description");
