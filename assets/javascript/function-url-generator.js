@@ -1,9 +1,9 @@
 
 import { games } from "./db.js";
 
-games.forEach((element, index, array) => {
+games.forEach(element => {
 
-    array[index].image = "./assets/" + element.image;
+    element.image = "./assets/" + element.image;
 
 });
 
