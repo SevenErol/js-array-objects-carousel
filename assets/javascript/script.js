@@ -1,36 +1,6 @@
 
-const images = [
-    {
-        image: 'img/01.webp',
-        title: 'Marvel\'s Spiderman Miles Morale',
-        text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
-    }, {
-        image: 'img/02.webp',
-        title: 'Ratchet & Clank: Rift Apart',
-        text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
-    }, {
-        image: 'img/03.webp',
-        title: 'Fortnite',
-        text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
-    }, {
-        image: 'img/04.webp',
-        title: 'Stray',
-        text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
-    }, {
-        image: 'img/05.webp',
-        title: "Marvel's Avengers",
-        text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
-    }
-];
 
-// function for generating URL 
-
-images.forEach((element, index, array) => {
-
-    array[index].image = "./assets/" + element.image;
-
-});
-
+import { games } from "./function-url-generator.js";
 
 // taking div to append title and description
 const titleDescription = document.querySelector(".title_and_description");
@@ -51,13 +21,13 @@ let imgPosition = 0;
 
 // function to create slides 
 
-const createSlides = images => {
+const createSlides = games => {
 
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < games.length; i++) {
 
         const thisImage = document.createElement("img");
 
-        thisImage.src = images[i].image;
+        thisImage.src = games[i].image;
 
         slides.appendChild(thisImage);
 
@@ -65,9 +35,9 @@ const createSlides = images => {
 
         const description = document.createElement("p");
 
-        title.innerHTML = images[i].title;
+        title.innerHTML = games[i].title;
 
-        description.innerHTML = images[i].text;
+        description.innerHTML = games[i].text;
 
         titleDescription.appendChild(title);
 
@@ -79,9 +49,9 @@ const createSlides = images => {
 
 // function to create thumbnails
 
-const createThumbs = images => {
+const createThumbs = games => {
 
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < games.length; i++) {
 
         const singleThumb = document.createElement("div");
 
@@ -93,7 +63,7 @@ const createThumbs = images => {
 
         overlay.classList.add("overlay");
 
-        thumbImage.src = images[i].image;
+        thumbImage.src = games[i].image;
 
         thumbs.appendChild(singleThumb);
 
@@ -106,10 +76,10 @@ const createThumbs = images => {
 }
 
 // invoking function to generate slides
-createSlides(images);
+createSlides(games);
 
 // invoking function to generate thumbnails
-createThumbs(images);
+createThumbs(games);
 
 // taking titles nodeList
 const allTitles = document.querySelectorAll(".title_and_description h3");
@@ -256,7 +226,7 @@ const nextImage = () => {
 
     imgPosition++;
 
-    if (imgPosition > images.length - 1) {
+    if (imgPosition > games.length - 1) {
 
         imgPosition = 0;
         activeAdder(allTitles, imgPosition);
@@ -299,7 +269,7 @@ const previousImage = () => {
 
     if (imgPosition < 0 ) {
 
-        imgPosition = images.length - 1;
+        imgPosition = games.length - 1;
         activeAdder(allTitles, imgPosition);
 
         activeAdder(allDescriptions, imgPosition);
