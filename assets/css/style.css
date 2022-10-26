@@ -94,6 +94,6 @@ i {
     right: 0;
 }
 
-.no_overlay {
+.single_thumb .active {
     background-color: transparent;
 }

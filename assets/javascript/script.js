@@ -14,6 +14,9 @@ import { classAdder } from "./Functions/helper/class-adder.js";
 // import function for removing class
 import { classRemover } from "./Functions/helper/class-remover.js";
 
+// import nodeLists management function
+import { nodeListOfNodeLists } from "./Functions/nodelists.js";
+
 // taking div to append title and description
 const titleDescription = document.querySelector(".title_and_description");
 
@@ -51,27 +54,26 @@ const allImages = document.querySelectorAll(".slides img");
 // taking overlays nodeList
 const allOverlay = document.querySelectorAll(".single_thumb div");
 
-// invoked functions for adding classes
+// invoked functions for adding classes to array of Nodelists
 
-classAdder(allTitles, imgPosition, "active");
+const everyNodeList = nodeListOfNodeLists(allTitles, allDescriptions, allImages, allOverlay);
 
-classAdder(allDescriptions, imgPosition, "active");
+everyNodeList.forEach(element => {
 
-classAdder(allImages, imgPosition, "active");
+    classAdder(element, imgPosition, "active");
 
-classAdder(allOverlay, imgPosition, "no_overlay");
+})
+
 
 // event listener for previous image
 
 previous.addEventListener("click", function () {
 
-    classRemover(allTitles, imgPosition, "active");
+    everyNodeList.forEach(element => {
 
-    classRemover(allDescriptions, imgPosition, "active");
+        classRemover(element, imgPosition, "active");
 
-    classRemover(allImages, imgPosition, "active");
-
-    classRemover(allOverlay, imgPosition, "no_overlay");
+    })
 
     imgPosition--;
 
@@ -79,25 +81,20 @@ previous.addEventListener("click", function () {
 
         imgPosition = games.length - 1;
 
-        classAdder(allTitles, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allDescriptions, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allImages, imgPosition, "active");
-
-        classAdder(allOverlay, imgPosition, "no_overlay");
+        })
 
 
     } else {
 
-        classAdder(allTitles, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allDescriptions, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allImages, imgPosition, "active");
-
-        classAdder(allOverlay, imgPosition, "no_overlay");
-
+        })
     }
 })
 
@@ -105,13 +102,11 @@ previous.addEventListener("click", function () {
 
 next.addEventListener("click", function () {
 
-    classRemover(allTitles, imgPosition, "active");
+    everyNodeList.forEach(element => {
 
-    classRemover(allDescriptions, imgPosition, "active");
+        classRemover(element, imgPosition, "active");
 
-    classRemover(allImages, imgPosition, "active");
-
-    classRemover(allOverlay, imgPosition, "no_overlay");
+    })
 
 
     imgPosition++;
@@ -119,24 +114,21 @@ next.addEventListener("click", function () {
     if (imgPosition > games.length - 1) {
 
         imgPosition = 0;
-        classAdder(allTitles, imgPosition, "active");
 
-        classAdder(allDescriptions, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allImages, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allOverlay, imgPosition, "no_overlay");
+        })
 
 
     } else {
 
-        classAdder(allTitles, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allDescriptions, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allImages, imgPosition, "active");
-
-        classAdder(allOverlay, imgPosition, "no_overlay");
+        })
     }
 })
 
@@ -144,36 +136,31 @@ next.addEventListener("click", function () {
 
 const nextImage = () => {
 
-    classRemover(allTitles, imgPosition, "active");
+    everyNodeList.forEach(element => {
 
-    classRemover(allDescriptions, imgPosition, "active");
+        classRemover(element, imgPosition, "active");
 
-    classRemover(allImages, imgPosition, "active");
-
-    classRemover(allOverlay, imgPosition, "no_overlay");
+    })
 
     imgPosition++;
 
     if (imgPosition > games.length - 1) {
 
         imgPosition = 0;
-        classAdder(allTitles, imgPosition, "active");
 
-        classAdder(allDescriptions, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allImages, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allOverlay, imgPosition, "no_overlay");
+        })
 
     } else {
 
-        classAdder(allTitles, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allDescriptions, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allImages, imgPosition, "active");
-
-        classAdder(allOverlay, imgPosition, "no_overlay");
+        })
 
     }
 
@@ -183,37 +170,32 @@ const nextImage = () => {
 
 const previousImage = () => {
 
-    classRemover(allTitles, imgPosition, "active");
+    everyNodeList.forEach(element => {
 
-    classRemover(allDescriptions, imgPosition, "active");
+        classRemover(element, imgPosition, "active");
 
-    classRemover(allImages, imgPosition, "active");
-
-    classRemover(allOverlay, imgPosition, "no_overlay");
+    })
 
     imgPosition--;
 
     if (imgPosition < 0) {
 
         imgPosition = games.length - 1;
-        classAdder(allTitles, imgPosition, "active");
 
-        classAdder(allDescriptions, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allImages, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allOverlay, imgPosition, "no_overlay");
+        })
 
 
     } else {
 
-        classAdder(allTitles, imgPosition, "active");
+        everyNodeList.forEach(element => {
 
-        classAdder(allDescriptions, imgPosition, "active");
+            classAdder(element, imgPosition, "active");
 
-        classAdder(allImages, imgPosition, "active");
-
-        classAdder(allOverlay, imgPosition, "no_overlay");
+        })
     }
 
 }
@@ -237,23 +219,19 @@ startButton.addEventListener("click", function () {
 
     clearInterval(reverseImages);
 
-    classRemover(allTitles, imgPosition, "active");
+    everyNodeList.forEach(element => {
 
-    classRemover(allDescriptions, imgPosition, "active");
+        classRemover(element, imgPosition, "active");
 
-    classRemover(allImages, imgPosition, "active");
-
-    classRemover(allOverlay, imgPosition, "no_overlay");
+    })
 
     imgPosition = 0;
 
-    classAdder(allTitles, imgPosition, "active");
+    everyNodeList.forEach(element => {
 
-    classAdder(allDescriptions, imgPosition, "active");
+        classAdder(element, imgPosition, "active");
 
-    classAdder(allImages, imgPosition, "active");
-
-    classAdder(allOverlay, imgPosition, "no_overlay");
+    })
 
     forwardImages = setInterval(nextImage, 3000);
 })
