@@ -1,12 +1,12 @@
 
 // import my array of objects generated dinamically
-import { games } from "./Functions/function-url-generator.js";
+import { games } from "./Functions/urlgenerator.js";
 
 // import function to generate slides
-import { createSlides } from "./Functions/function-to-create-slides.js";
+import { createSlides } from "./Functions/slides.js";
 
 // import function to generate thumbnail
-import { createThumbs } from "./Functions/function-to-create-thumbs.js";
+import { createThumbs } from "./Functions/thumbs.js";
 
 // taking div to append title and description
 const titleDescription = document.querySelector(".title_and_description");
