@@ -1,5 +1,5 @@
 
-import { games } from "./db.js";
+import { games } from "../db.js";
 
 games.forEach(element => {
 

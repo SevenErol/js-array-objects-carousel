@@ -1,6 +1,12 @@
 
+// import my array of objects generated dinamically
+import { games } from "./Functions/function-url-generator.js";
 
-import { games } from "./function-url-generator.js";
+// import function to generate slides
+import { createSlides } from "./Functions/function-to-create-slides.js";
+
+// import function to generate thumbnail
+import { createThumbs } from "./Functions/function-to-create-thumbs.js";
 
 // taking div to append title and description
 const titleDescription = document.querySelector(".title_and_description");
@@ -17,69 +23,15 @@ const previous = document.querySelector(".previous");
 // taking button next image
 const next = document.querySelector(".next");
 
+// set image position equals zero
 let imgPosition = 0;
 
-// function to create slides 
-
-const createSlides = games => {
-
-    for (let i = 0; i < games.length; i++) {
-
-        const thisImage = document.createElement("img");
-
-        thisImage.src = games[i].image;
-
-        slides.appendChild(thisImage);
-
-        const title = document.createElement("h3");
-
-        const description = document.createElement("p");
-
-        title.innerHTML = games[i].title;
-
-        description.innerHTML = games[i].text;
-
-        titleDescription.appendChild(title);
-
-        titleDescription.appendChild(description);
-
-    }
-
-}
-
-// function to create thumbnails
-
-const createThumbs = games => {
-
-    for (let i = 0; i < games.length; i++) {
-
-        const singleThumb = document.createElement("div");
-
-        const thumbImage = document.createElement("img");
-
-        const overlay = document.createElement("div");
-
-        singleThumb.classList.add("single_thumb");
-
-        overlay.classList.add("overlay");
-
-        thumbImage.src = games[i].image;
-
-        thumbs.appendChild(singleThumb);
-
-        singleThumb.appendChild(thumbImage);
-
-        singleThumb.appendChild(overlay);
-
-    }
-
-}
 
 // invoking function to generate slides
-createSlides(games);
+createSlides(games, slides, titleDescription);
 
 // invoking function to generate thumbnails
-createThumbs(games);
+createThumbs(games, thumbs);
 
 // taking titles nodeList
 const allTitles = document.querySelectorAll(".title_and_description h3");
