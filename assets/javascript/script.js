@@ -99,7 +99,7 @@ previous.addEventListener("click", function () {
 
     if (imgPosition < 0) {
 
-        imgPosition = images.length - 1;
+        imgPosition = games.length - 1;
 
         activeAdder(allTitles, imgPosition);
 
@@ -138,7 +138,7 @@ next.addEventListener("click", function () {
 
     imgPosition++;
 
-    if (imgPosition > images.length - 1) {
+    if (imgPosition > games.length - 1) {
 
         imgPosition = 0;
         activeAdder(allTitles, imgPosition);
