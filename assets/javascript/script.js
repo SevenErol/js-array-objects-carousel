@@ -8,6 +8,12 @@ import { createSlides } from "./Functions/slides.js";
 // import function to generate thumbnail
 import { createThumbs } from "./Functions/thumbs.js";
 
+// import function for adding class
+import { classAdder } from "./Functions/helper/class-adder.js";
+
+// import function for removing class
+import { classRemover } from "./Functions/helper/class-remover.js";
+
 // taking div to append title and description
 const titleDescription = document.querySelector(".title_and_description");
 
@@ -36,7 +42,7 @@ createThumbs(games, thumbs);
 // taking titles nodeList
 const allTitles = document.querySelectorAll(".title_and_description h3");
 
-// taking decsriptions nodeList
+// taking descriptions nodeList
 const allDescriptions = document.querySelectorAll(".title_and_description p");
 
 // taking images nodeList
@@ -45,55 +51,27 @@ const allImages = document.querySelectorAll(".slides img");
 // taking overlays nodeList
 const allOverlay = document.querySelectorAll(".single_thumb div");
 
-// function for adding class active
-const activeAdder = (nodeList, position) => {
-
-    nodeList[position].classList.add("active");
-
-}
-
-// function for removing class active
-const activeRemover = (nodeList, position) => {
-
-    nodeList[position].classList.remove("active");
-
-}
-
-// function for adding class no_overlay
-const noOverlayAdder = (nodeList, position) => {
-
-    nodeList[position].classList.add("no_overlay");
-
-}
-
-// function for removing class no_overlay
-const noOverlayRemover = (nodeList, position) => {
-
-    nodeList[position].classList.remove("no_overlay");
-
-}
-
 // invoked functions for adding classes
 
-activeAdder(allTitles, imgPosition);
+classAdder(allTitles, imgPosition, "active");
 
-activeAdder(allDescriptions, imgPosition);
+classAdder(allDescriptions, imgPosition, "active");
 
-activeAdder(allImages, imgPosition);
+classAdder(allImages, imgPosition, "active");
 
-noOverlayAdder(allOverlay, imgPosition);
+classAdder(allOverlay, imgPosition, "no_overlay");
 
 // event listener for previous image
 
 previous.addEventListener("click", function () {
 
-    activeRemover(allTitles, imgPosition);
+    classRemover(allTitles, imgPosition, "active");
 
-    activeRemover(allDescriptions, imgPosition);
+    classRemover(allDescriptions, imgPosition, "active");
 
-    activeRemover(allImages, imgPosition);
+    classRemover(allImages, imgPosition, "active");
 
-    noOverlayRemover(allOverlay, imgPosition);
+    classRemover(allOverlay, imgPosition, "no_overlay");
 
     imgPosition--;
 
@@ -101,24 +79,24 @@ previous.addEventListener("click", function () {
 
         imgPosition = games.length - 1;
 
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
+        classAdder(allOverlay, imgPosition, "no_overlay");
 
 
     } else {
 
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
+        classAdder(allOverlay, imgPosition, "no_overlay");
 
     }
 })
@@ -127,13 +105,13 @@ previous.addEventListener("click", function () {
 
 next.addEventListener("click", function () {
 
-    activeRemover(allTitles, imgPosition);
+    classRemover(allTitles, imgPosition, "active");
 
-    activeRemover(allDescriptions, imgPosition);
+    classRemover(allDescriptions, imgPosition, "active");
 
-    activeRemover(allImages, imgPosition);
+    classRemover(allImages, imgPosition, "active");
 
-    noOverlayRemover(allOverlay, imgPosition);
+    classRemover(allOverlay, imgPosition, "no_overlay");
 
 
     imgPosition++;
@@ -141,25 +119,24 @@ next.addEventListener("click", function () {
     if (imgPosition > games.length - 1) {
 
         imgPosition = 0;
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
+        classAdder(allOverlay, imgPosition, "no_overlay");
 
 
     } else {
 
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
-
+        classAdder(allOverlay, imgPosition, "no_overlay");
     }
 })
 
@@ -167,38 +144,36 @@ next.addEventListener("click", function () {
 
 const nextImage = () => {
 
-    activeRemover(allTitles, imgPosition);
+    classRemover(allTitles, imgPosition, "active");
 
-    activeRemover(allDescriptions, imgPosition);
+    classRemover(allDescriptions, imgPosition, "active");
 
-    activeRemover(allImages, imgPosition);
+    classRemover(allImages, imgPosition, "active");
 
-    noOverlayRemover(allOverlay, imgPosition);
-
+    classRemover(allOverlay, imgPosition, "no_overlay");
 
     imgPosition++;
 
     if (imgPosition > games.length - 1) {
 
         imgPosition = 0;
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
-
+        classAdder(allOverlay, imgPosition, "no_overlay");
 
     } else {
 
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
+        classAdder(allOverlay, imgPosition, "no_overlay");
 
     }
 
@@ -208,39 +183,37 @@ const nextImage = () => {
 
 const previousImage = () => {
 
-    activeRemover(allTitles, imgPosition);
+    classRemover(allTitles, imgPosition, "active");
 
-    activeRemover(allDescriptions, imgPosition);
+    classRemover(allDescriptions, imgPosition, "active");
 
-    activeRemover(allImages, imgPosition);
+    classRemover(allImages, imgPosition, "active");
 
-    noOverlayRemover(allOverlay, imgPosition);
-
+    classRemover(allOverlay, imgPosition, "no_overlay");
 
     imgPosition--;
 
-    if (imgPosition < 0 ) {
+    if (imgPosition < 0) {
 
         imgPosition = games.length - 1;
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
+        classAdder(allOverlay, imgPosition, "no_overlay");
 
 
     } else {
 
-        activeAdder(allTitles, imgPosition);
+        classAdder(allTitles, imgPosition, "active");
 
-        activeAdder(allDescriptions, imgPosition);
+        classAdder(allDescriptions, imgPosition, "active");
 
-        activeAdder(allImages, imgPosition);
+        classAdder(allImages, imgPosition, "active");
 
-        noOverlayAdder(allOverlay, imgPosition);
-
+        classAdder(allOverlay, imgPosition, "no_overlay");
     }
 
 }
@@ -264,25 +237,25 @@ startButton.addEventListener("click", function () {
 
     clearInterval(reverseImages);
 
-    activeRemover(allTitles, imgPosition);
+    classRemover(allTitles, imgPosition, "active");
 
-    activeRemover(allDescriptions, imgPosition);
+    classRemover(allDescriptions, imgPosition, "active");
 
-    activeRemover(allImages, imgPosition);
+    classRemover(allImages, imgPosition, "active");
 
-    noOverlayRemover(allOverlay, imgPosition);
+    classRemover(allOverlay, imgPosition, "no_overlay");
 
     imgPosition = 0;
 
-    activeAdder(allTitles, imgPosition);
+    classAdder(allTitles, imgPosition, "active");
 
-    activeAdder(allDescriptions, imgPosition);
+    classAdder(allDescriptions, imgPosition, "active");
 
-    activeAdder(allImages, imgPosition);
+    classAdder(allImages, imgPosition, "active");
 
-    noOverlayAdder(allOverlay, imgPosition);
+    classAdder(allOverlay, imgPosition, "no_overlay");
 
-    forwardImages = setInterval(nextImage, 3000) ;
+    forwardImages = setInterval(nextImage, 3000);
 })
 
 // event listener to stop auto-play
@@ -299,7 +272,7 @@ stopButton.addEventListener("click", function () {
 
 let reverseImages;
 
-reverseButton.addEventListener("click", function (){
+reverseButton.addEventListener("click", function () {
 
     clearInterval(forwardImages);
 
